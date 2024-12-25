@@ -36,4 +36,16 @@ class PostController extends Controller
             return response()->json(['message' => 'An error occurred while creating the post.'], 500);
         }
     }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Post $post)
+    {
+        try {
+            return PostResource::make($post);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'An error occurred while fetching the post.'], 500);
+        }
+    }
 }

@@ -5,7 +5,7 @@ use App\Http\Controllers\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::apiResource('posts', PostController::class)->only('index', 'store');
+Route::apiResource('posts', PostController::class)->only('index', 'store', 'show');
 
 Route::post('register', [AuthController::class, 'register']);
 
