@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
+use App\Http\Resources\TaskResource;
 use App\Models\Task;
 
 class TaskController extends Controller
@@ -11,17 +12,16 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function pending()
     {
-        //
-    }
+        try {
+            $task = Task::where('is_completed', false)->get();
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+            return TaskResource::collection($task);
+
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'An error occurred while creating the task.'], 500);
+        }
     }
 
     /**
@@ -29,38 +29,33 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request)
     {
-        //
+        try {
+            $data = $request->validated();
+            $data['is_completed'] = false;
+            $task = Task::create($data);
+
+            return TaskResource::make($task);
+
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'An error occurred while creating the task.'], 500);
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Task $task)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Task $task)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(UpdateTaskRequest $request, Task $task)
     {
-        //
-    }
+        try {
+            $data = $request->validated();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Task $task)
-    {
-        //
+            $task->update($data);
+
+            return TaskResource::make($task);
+
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'An error occurred while updating the task.'], 500);
+        }
     }
 }
