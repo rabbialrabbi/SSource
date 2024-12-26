@@ -20,7 +20,7 @@ class TaskController extends Controller
             return TaskResource::collection($task);
 
         } catch (\Exception $e) {
-            return response()->json(['message' => 'An error occurred while creating the task.'], 500);
+            return response()->json(['message' => 'An error occurred while fetching the task.'], 500);
         }
     }
 
