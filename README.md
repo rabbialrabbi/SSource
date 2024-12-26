@@ -77,10 +77,15 @@ sudo chown -R www-data:www-data /var/www/html \
 ### 10. Run the Application
 Start the development server using the following command:
 ```bash
-php artisan serve
+php artisan serve --port=8001
 ```
+The application will be accessible at `http://localhost:8001`.
 
-The application will be accessible at `http://localhost:8000`.
+### 11. Test the Application with postman (Optional)
+You will find a postman collection in the root directory named `SSource.json`. This collection contains all the endpoints of the project. Import the collection in postman and test the application.
+
+
+
 
 ## Notes
 
