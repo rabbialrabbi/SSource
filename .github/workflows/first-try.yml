@@ -10,5 +10,11 @@ jobs:
     steps:
       - name: Code checkout
         uses: actions/checkout@v4
-      - name: Print
+      - name: Install CURL
+        run: apt install curl
+      - name: Run Composer
         run: composer install
+      - name: Run server
+        run: php artisan server
+      - name: Curl request
+        run: curl localhost
