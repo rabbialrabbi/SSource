@@ -11,10 +11,12 @@ jobs:
       - name: Code checkout
         uses: actions/checkout@v4
       - name: Install CURL
-        run: apt install curl
+        run: |
+          sudo apt update
+          sudo apt install curl
       - name: Run Composer
         run: composer install
       - name: Run server
-        run: php artisan server
+        run: sudo php artisan server
       - name: Curl request
         run: curl localhost
