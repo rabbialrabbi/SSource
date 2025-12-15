@@ -1,0 +1,14 @@
+name: Basic CI
+
+on:
+  push:
+    branchs: ['main']
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code checkout
+        uses: actions/checkout@v4
+      - name: Print
+        run: echo "Hello from basic CI pipeline"
