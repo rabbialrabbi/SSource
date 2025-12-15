@@ -11,4 +11,4 @@ jobs:
       - name: Code checkout
         uses: actions/checkout@v4
       - name: Print
-        run: ls
+        run: composer install
