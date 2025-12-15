@@ -17,6 +17,6 @@ jobs:
       - name: Run Composer
         run: composer install
       - name: Run server
-        run: sudo php artisan server
+        run: sudo php artisan serve
       - name: Curl request
         run: curl localhost
